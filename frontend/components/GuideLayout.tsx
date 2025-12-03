@@ -339,6 +339,16 @@ export default function GuideLayout({ children, githubUrl, githubLabel = "View o
                 >
                   🔄 Scripts Workflow
                 </Link>
+                <Link
+                  href="/codebook/architecture"
+                  className={`block px-2 py-1.5 text-xs rounded-md transition-colors ${
+                    pathname === '/codebook/architecture'
+                      ? 'bg-gray-200 text-gray-900 font-medium'
+                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                  }`}
+                >
+                  🏗️ Architecture
+                </Link>
               </div>
             </div>
           </nav>

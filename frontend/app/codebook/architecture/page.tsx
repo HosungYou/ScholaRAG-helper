@@ -309,6 +309,192 @@ outputs/ (Final RAG system + PRISMA diagram)`}
           </div>
         </section>
 
+        {/* AI Assistant Integration */}
+        <section className="mb-12">
+          <h2 id="ai-integration">AI Assistant Integration: CLAUDE.md + Skills + Scripts</h2>
+
+          <div className="callout callout-info mb-6">
+            <p className="font-semibold mb-2">🤖 Three-Layer Architecture for Claude Code</p>
+            <p className="mb-0">
+              ScholaRAG uses a complementary three-layer system where CLAUDE.md, skills/, and scripts/
+              work together without conflict. Each layer activates at different times and serves different purposes.
+            </p>
+          </div>
+
+          <h3>Layer Architecture</h3>
+
+          <div className="bg-gray-50 dark:bg-gray-900 p-6 rounded-lg border mb-6">
+            <pre className="text-sm overflow-x-auto">
+{`┌─────────────────────────────────────────────────────────────┐
+│  Layer 1: CLAUDE.md (Foundation - Always Active)            │
+│  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ │
+│  • Loaded when Claude Code opens ScholaRAG directory        │
+│  • Provides base behavior rules, automation principles      │
+│  • Defines researcher profile, detection patterns           │
+│  • Handles: "I want to review AI chatbots" → Stage 1        │
+└─────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────┐
+│  Layer 2: skills/ (Knowledge - Conditional Load)            │
+│  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ │
+│  • SKILL.md → Entry point (Claude Skills feature)           │
+│  • skills/claude_only/ → Detailed stage guides              │
+│  • skills/reference/ → API docs, decision trees             │
+│  • Triggered: "Help me with Stage 3" or stage transition    │
+└─────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────┐
+│  Layer 3: scripts/ (Execution - After Completion)           │
+│  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ │
+│  • Actual Python code execution                             │
+│  • 01_fetch_papers.py → 07_generate_prisma.py               │
+│  • Called when stage conversation completes                 │
+└─────────────────────────────────────────────────────────────┘`}
+            </pre>
+          </div>
+
+          <h3>When Each Layer Activates</h3>
+
+          <table className="w-full border-collapse mb-6">
+            <thead>
+              <tr className="bg-gray-100 dark:bg-gray-800">
+                <th className="border p-3 text-left">Scenario</th>
+                <th className="border p-3 text-center">CLAUDE.md</th>
+                <th className="border p-3 text-center">skills/</th>
+                <th className="border p-3 text-left">Result</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="border p-3 text-sm">User opens ScholaRAG folder</td>
+                <td className="border p-3 text-center text-green-600">✅ Active</td>
+                <td className="border p-3 text-center text-gray-400">⏸ Standby</td>
+                <td className="border p-3 text-sm">Base rules loaded</td>
+              </tr>
+              <tr>
+                <td className="border p-3 text-sm">"I want to review AI chatbots"</td>
+                <td className="border p-3 text-center text-green-600">✅ Pattern detected</td>
+                <td className="border p-3 text-center text-gray-400">⏸ Standby</td>
+                <td className="border p-3 text-sm">Stage 1 starts</td>
+              </tr>
+              <tr>
+                <td className="border p-3 text-sm">"Help me with Stage 3"</td>
+                <td className="border p-3 text-center text-green-600">✅ Active</td>
+                <td className="border p-3 text-center text-green-600">✅ Loaded</td>
+                <td className="border p-3 text-sm">Detailed PRISMA guide</td>
+              </tr>
+              <tr>
+                <td className="border p-3 text-sm">Stage 1 → Stage 2 transition</td>
+                <td className="border p-3 text-center text-green-600">✅ Active</td>
+                <td className="border p-3 text-center text-yellow-500">⚡ Auto-load</td>
+                <td className="border p-3 text-sm">Query strategy guide</td>
+              </tr>
+              <tr>
+                <td className="border p-3 text-sm">Stage conversation completes</td>
+                <td className="border p-3 text-center text-green-600">✅ Active</td>
+                <td className="border p-3 text-center text-green-600">✅ Active</td>
+                <td className="border p-3 text-sm">scripts/*.py executed</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Why This Works: No Conflicts</h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div className="border rounded-lg p-4 bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800">
+              <h4 className="font-bold mb-2">📘 CLAUDE.md</h4>
+              <p className="text-sm text-muted-foreground mb-2">Always-on foundation</p>
+              <ul className="text-xs space-y-1">
+                <li>• Detection patterns</li>
+                <li>• Researcher profile</li>
+                <li>• Automation rules</li>
+                <li>• CLI command formats</li>
+              </ul>
+            </div>
+            <div className="border rounded-lg p-4 bg-purple-50 dark:bg-purple-950 border-purple-200 dark:border-purple-800">
+              <h4 className="font-bold mb-2">🎯 skills/</h4>
+              <p className="text-sm text-muted-foreground mb-2">Extended knowledge</p>
+              <ul className="text-xs space-y-1">
+                <li>• Stage conversation flows</li>
+                <li>• Turn-by-turn patterns</li>
+                <li>• Divergence handling</li>
+                <li>• API reference details</li>
+              </ul>
+            </div>
+            <div className="border rounded-lg p-4 bg-green-50 dark:bg-green-950 border-green-200 dark:border-green-800">
+              <h4 className="font-bold mb-2">⚙️ scripts/</h4>
+              <p className="text-sm text-muted-foreground mb-2">Actual execution</p>
+              <ul className="text-xs space-y-1">
+                <li>• Python implementation</li>
+                <li>• API calls</li>
+                <li>• Data processing</li>
+                <li>• File I/O</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="callout callout-success">
+            <p className="font-semibold mb-2">💡 Key Insight</p>
+            <p className="mb-0">
+              Skills enhance but don't replace CLAUDE.md. Even without explicit skill triggers,
+              CLAUDE.md provides sufficient guidance. Skills add detailed conversation patterns
+              for complex stages, making them <strong>complementary, not competing</strong>.
+            </p>
+          </div>
+
+          <h3>File Structure</h3>
+
+          <div className="bg-gray-50 dark:bg-gray-900 p-4 rounded-lg border text-sm font-mono mb-6">
+            <div className="text-gray-500 dark:text-gray-400"># Layer 1: Foundation (always loaded)</div>
+            <div>CLAUDE.md              → Base behavior, automation rules</div>
+            <div className="mt-3 text-gray-500 dark:text-gray-400"># Layer 2: Skills (loaded on-demand)</div>
+            <div>SKILL.md               → Entry point for Claude Skills</div>
+            <div>skills/claude_only/</div>
+            <div className="pl-4">├── stage1_research_setup.md</div>
+            <div className="pl-4">├── stage2_query_strategy.md</div>
+            <div className="pl-4">├── ...</div>
+            <div className="pl-4">└── stage7_documentation.md</div>
+            <div>skills/reference/</div>
+            <div className="pl-4">├── api_reference.md</div>
+            <div className="pl-4">└── project_type_decision_tree.md</div>
+            <div className="mt-3 text-gray-500 dark:text-gray-400"># Layer 3: Execution (called after conversation)</div>
+            <div>scripts/</div>
+            <div className="pl-4">├── 01_fetch_papers.py</div>
+            <div className="pl-4">├── ...</div>
+            <div className="pl-4">└── 07_generate_prisma.py</div>
+          </div>
+
+          <h3>Example Workflow</h3>
+
+          <div className="border rounded-lg overflow-hidden mb-6">
+            <div className="bg-gray-100 dark:bg-gray-800 p-3 font-semibold">
+              User: "I want to conduct a systematic review on AI chatbots for language learning"
+            </div>
+            <div className="p-4 space-y-3 text-sm">
+              <div className="flex gap-2">
+                <span className="bg-blue-100 dark:bg-blue-900 px-2 py-1 rounded text-xs font-mono">CLAUDE.md</span>
+                <span>Detects pattern → Activates Stage 1 behavior</span>
+              </div>
+              <div className="flex gap-2">
+                <span className="bg-blue-100 dark:bg-blue-900 px-2 py-1 rounded text-xs font-mono">CLAUDE.md</span>
+                <span>Asks clarifying questions, recommends project_type</span>
+              </div>
+              <div className="flex gap-2">
+                <span className="bg-purple-100 dark:bg-purple-900 px-2 py-1 rounded text-xs font-mono">skills/</span>
+                <span>stage1_research_setup.md loads for detailed turn-by-turn guidance</span>
+              </div>
+              <div className="flex gap-2">
+                <span className="bg-purple-100 dark:bg-purple-900 px-2 py-1 rounded text-xs font-mono">skills/</span>
+                <span>Validates completion checklist, handles divergences</span>
+              </div>
+              <div className="flex gap-2">
+                <span className="bg-green-100 dark:bg-green-900 px-2 py-1 rounded text-xs font-mono">scripts/</span>
+                <span>scholarag_cli.py init --project-type systematic_review</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Common Pitfalls */}
         <section className="mb-12">
           <h2 id="pitfalls">Common Pitfalls for Contributors</h2>

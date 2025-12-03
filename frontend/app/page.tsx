@@ -17,6 +17,7 @@ export default function HomePage() {
           </Link>
           <nav className="hidden md:flex gap-8 items-center text-sm">
             <AnimatedLink href="/guide">Documentation</AnimatedLink>
+            <AnimatedLink href="/chat">Chatbot</AnimatedLink>
             <AnimatedLink href="/resources">Resources</AnimatedLink>
             <AnimatedLink href="/about">About</AnimatedLink>
             <a
@@ -32,7 +33,7 @@ export default function HomePage() {
       </header>
 
       {/* Hero - Large Typography with Animations */}
-      <section className="relative max-w-7xl mx-auto px-6 pt-32 pb-24 overflow-hidden">
+      <section className="max-w-7xl mx-auto px-6 pt-20 pb-12 overflow-hidden">
         <div className="max-w-4xl">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -73,26 +74,13 @@ export default function HomePage() {
               Get Started
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
+            <Link
+              href="/chat"
+              className="inline-flex items-center gap-2 px-6 py-3 border border-border text-foreground rounded-md text-sm font-medium hover:border-foreground hover:scale-105 transition-all"
+            >
+              Try Demo
+            </Link>
           </motion.div>
-        </div>
-
-        {/* Unicorn Studio 3D Diamond Animation (bottom right of hero) */}
-        <div
-          className="absolute bottom-8 right-8 pointer-events-none hidden md:block"
-          style={{
-            zIndex: 1,
-            width: '350px',
-            height: '280px',
-            opacity: 0.9,
-          }}
-        >
-          <div
-            data-us-project="9BpGXKdn7qDLIOQ5StE3"
-            style={{
-              width: '100%',
-              height: '100%',
-            }}
-          />
         </div>
       </section>
 
@@ -102,7 +90,7 @@ export default function HomePage() {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true, margin: "-100px" }}
-        className="max-w-7xl mx-auto px-6 py-20 border-t border-border"
+        className="max-w-7xl mx-auto px-6 py-12 border-t border-border"
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <motion.div
@@ -112,8 +100,8 @@ export default function HomePage() {
             viewport={{ once: true }}
           >
             <AnimatedCounter
-              end={30}
-              suffix=" min"
+              end={3}
+              suffix=" hrs"
               className="text-4xl font-bold tracking-tight mb-2"
             />
             <div className="text-sm text-muted">Setup to deployment</div>
@@ -155,7 +143,7 @@ export default function HomePage() {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true, margin: "-100px" }}
-        className="max-w-7xl mx-auto px-6 py-20 border-t border-border"
+        className="max-w-7xl mx-auto px-6 py-12 border-t border-border"
       >
         <h2 className="text-3xl font-bold tracking-tight mb-12">Everything you need</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-lg overflow-hidden">
@@ -166,21 +154,21 @@ export default function HomePage() {
             delay={0}
           />
           <FeatureCell
+            title="AI-Powered Chatbot"
+            description="Get instant answers about ScholaRAG with Claude 3.5 Sonnet integration"
+            href="/chat"
+            delay={0.1}
+          />
+          <FeatureCell
             title="Ready-to-Use Templates"
             description="Pre-configured workflows for PRISMA reviews, meta-analysis, and systematic research"
             href="/resources"
-            delay={0.1}
+            delay={0.2}
           />
           <FeatureCell
             title="Video Tutorials"
             description="Visual walkthroughs of the complete 7-stage research workflow"
             href="/resources#videos"
-            delay={0.2}
-          />
-          <FeatureCell
-            title="Open Source & Extensible"
-            description="MIT licensed framework you can customize and extend for your specific research needs"
-            href="https://github.com/HosungYou/ScholaRAG"
             delay={0.3}
           />
         </div>
@@ -192,16 +180,16 @@ export default function HomePage() {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true, margin: "-100px" }}
-        className="max-w-7xl mx-auto px-6 py-20 border-t border-border"
+        className="max-w-7xl mx-auto px-6 py-12 border-t border-border"
       >
         <h2 className="text-3xl font-bold tracking-tight mb-8">Quick Start</h2>
         <div className="border border-border rounded-lg p-8 bg-gray-50">
           <ol className="space-y-4 mb-8 text-sm">
             {[
-              'Install VS Code + Claude Code extension',
-              'Copy-paste setup prompt to Claude Code',
-              'Answer questions about your research',
-              'Let Claude automate the entire workflow'
+              'Clone the repository and install dependencies',
+              'Configure your API keys and environment',
+              'Follow the 7-stage workflow in VS Code',
+              'Deploy your custom RAG system'
             ].map((step, i) => (
               <motion.li
                 key={i}
@@ -223,12 +211,12 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="bg-foreground text-background p-6 rounded-md font-mono text-sm overflow-x-auto"
           >
-            <div className="text-gray-400"># Copy-paste this to Claude Code</div>
-            <div>Please set up ScholaRAG for me:</div>
-            <div className="mt-2">1. Clone https://github.com/HosungYou/ScholaRAG.git</div>
-            <div>2. Create Python virtual environment</div>
-            <div>3. Install dependencies: pip install click pyyaml</div>
-            <div>4. Initialize project: python scholarag_cli.py init</div>
+            <div className="text-gray-400"># Install ScholaRAG</div>
+            <div>git clone https://github.com/HosungYou/ScholaRAG.git</div>
+            <div>cd ScholaRAG</div>
+            <div>pip install -r requirements.txt</div>
+            <div className="mt-4 text-gray-400"># Open in VS Code</div>
+            <div>code .</div>
           </motion.div>
         </div>
       </motion.section>
@@ -239,7 +227,7 @@ export default function HomePage() {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true, margin: "-100px" }}
-        className="relative max-w-7xl mx-auto px-6 py-16 border-t border-border"
+        className="max-w-7xl mx-auto px-6 py-12 border-t border-border"
       >
         <h2 className="text-3xl font-bold tracking-tight mb-8">Built with modern tools</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border border border-border rounded-lg overflow-hidden">
@@ -258,13 +246,13 @@ export default function HomePage() {
         </div>
       </motion.section>
 
-      {/* CTA */}
+      {/* CTA Section */}
       <motion.section
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true, margin: "-100px" }}
-        className="max-w-7xl mx-auto px-6 py-20 border-t border-border"
+        className="max-w-7xl mx-auto px-6 py-12 border-t border-border"
       >
         <div className="max-w-2xl">
           <h2 className="text-4xl font-bold tracking-tight mb-4">
@@ -293,7 +281,48 @@ export default function HomePage() {
           </div>
         </div>
       </motion.section>
+
+      {/* Footer (Static, no animation) */}
+      <footer className="border-t border-border mt-20">
+        <div className="max-w-7xl mx-auto px-6 py-8">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+              <div className="font-medium mb-2">ScholaRAG</div>
+              <p className="text-sm text-muted">
+                Open-source research AI platform
+              </p>
+            </div>
+            <div className="flex gap-6 text-sm text-muted">
+              <AnimatedLink href="/guide">Documentation</AnimatedLink>
+              <a
+                href="https://github.com/HosungYou/ScholaRAG"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-foreground transition-colors"
+              >
+                GitHub
+              </a>
+              <AnimatedLink href="/resources">Resources</AnimatedLink>
+            </div>
+          </div>
+          <div className="mt-8 pt-8 border-t border-border text-xs text-muted">
+            Built with Next.js, Tailwind CSS, and Claude AI. Deployed on Vercel.
+          </div>
+        </div>
+      </footer>
     </div>
+  )
+}
+
+// Animated Link with underline expand effect
+function AnimatedLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <Link href={href} className="relative text-muted hover:text-foreground transition-colors group">
+      <span className="relative">
+        {children}
+        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-foreground group-hover:w-full transition-all duration-300" />
+      </span>
+    </Link>
   )
 }
 
@@ -335,17 +364,5 @@ function TechCell({ name, description, delay }: { name: string; description: str
       <div className="font-medium text-sm mb-1">{name}</div>
       <div className="text-xs text-muted">{description}</div>
     </motion.div>
-  )
-}
-
-// Animated Link with underline expand effect
-function AnimatedLink({ href, children }: { href: string; children: React.ReactNode }) {
-  return (
-    <Link href={href} className="relative text-muted hover:text-foreground transition-colors group">
-      <span className="relative">
-        {children}
-        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-foreground group-hover:w-full transition-all duration-300" />
-      </span>
-    </Link>
   )
 }
