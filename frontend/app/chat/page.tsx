@@ -310,34 +310,6 @@ export default function ChatPage() {
           </div>
         </div>
       </div>
-
-      {/* Footer */}
-      <footer className="border-t border-border mt-20">
-        <div className="max-w-7xl mx-auto px-6 py-8">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-            <div>
-              <div className="font-medium mb-2">ScholaRAG</div>
-              <p className="text-sm text-muted">
-                Open-source research AI platform
-              </p>
-            </div>
-            <div className="flex gap-6 text-sm text-muted">
-              <AnimatedLink href="/guide">Documentation</AnimatedLink>
-              <a
-                href="https://github.com/HosungYou/ScholaRAG"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-foreground transition-colors"
-              >
-                GitHub
-              </a>
-            </div>
-          </div>
-          <div className="mt-8 pt-8 border-t border-border text-xs text-muted">
-            Built with Next.js, Tailwind CSS, and Claude AI. Deployed on Vercel.
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }
