@@ -24,7 +24,7 @@ interface GuideLayoutProps {
   githubLabel?: string
 }
 
-const quickstartChapter = { number: 0, title: '5분 빠른 시작', href: '/guide/quickstart' }
+const quickstartChapter = { number: 0, title: 'Quick Start', href: '/guide/quickstart' }
 
 const setupTheoryChapters: Chapter[] = [
   { number: 1, title: 'Introduction', href: '/guide/01-introduction' },
@@ -147,7 +147,7 @@ export default function GuideLayout({ children, githubUrl, githubLabel = "View o
                   : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
               }`}
             >
-              🚀 {quickstartChapter.title}
+              <span className="mr-1">🚀</span> 5-Min {quickstartChapter.title}
             </Link>
 
             {/* Setup & Theory Section */}
