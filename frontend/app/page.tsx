@@ -22,7 +22,6 @@ export default function HomePage() {
           <nav className="hidden md:flex gap-8 items-center text-sm">
             <AnimatedLink href="/guide">Documentation</AnimatedLink>
             <AnimatedLink href="/chat">Chatbot</AnimatedLink>
-            <AnimatedLink href="/resources">Resources</AnimatedLink>
             <AnimatedLink href="/about">About</AnimatedLink>
             <a
               href="https://github.com/HosungYou/ScholaRAG"
@@ -181,15 +180,15 @@ export default function HomePage() {
             delay={0.1}
           />
           <FeatureCell
-            title="Ready-to-Use Templates"
-            description="Pre-configured workflows for PRISMA reviews, meta-analysis, and systematic research"
-            href="/resources"
+            title="Quick Start Guide"
+            description="Get started in minutes with step-by-step setup instructions and configuration"
+            href="/guide/quickstart"
             delay={0.2}
           />
           <FeatureCell
-            title="Video Tutorials"
-            description="Visual walkthroughs of the complete 7-stage research workflow"
-            href="/resources#videos"
+            title="Core Concepts"
+            description="Deep dive into AI-PRISMA screening, RAG architecture, and research workflows"
+            href="/guide/03-core-concepts"
             delay={0.3}
           />
         </div>
@@ -323,7 +322,6 @@ export default function HomePage() {
               >
                 GitHub
               </a>
-              <AnimatedLink href="/resources">Resources</AnimatedLink>
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-border text-xs text-muted">

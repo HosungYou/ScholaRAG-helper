@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
-import { BookOpen, Send, Loader2, Github } from 'lucide-react'
+import { Github, Send, Loader2 } from 'lucide-react'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -85,6 +85,21 @@ function getDemoResponse(query: string): string {
   return DEMO_RESPONSES.default
 }
 
+// Animated Link with underline expand effect (same as main page)
+function AnimatedLink({ href, children, active = false }: { href: string; children: React.ReactNode; active?: boolean }) {
+  return (
+    <Link
+      href={href}
+      className={`relative transition-colors group ${active ? 'text-foreground' : 'text-muted hover:text-foreground'}`}
+    >
+      <span className="relative">
+        {children}
+        <span className={`absolute bottom-0 left-0 h-0.5 bg-foreground transition-all duration-300 ${active ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+      </span>
+    </Link>
+  )
+}
+
 export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -163,20 +178,23 @@ export default function ChatPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
-      {/* Header */}
-      <header className="border-b border-gray-200">
-        <div className="container mx-auto px-4 py-6 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <BookOpen className="w-8 h-8 text-primary-600" />
-            <h1 className="text-2xl font-bold">ScholaRAG Helper</h1>
+    <div className="min-h-screen bg-background">
+      {/* Header - Matching main page design */}
+      <header className="border-b border-border">
+        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2 group">
+            <div className="text-lg font-medium tracking-tight">ScholaRAG</div>
           </Link>
-          <nav className="flex gap-6">
-            <Link href="/" className="hover:text-primary-600">Home</Link>
-            <Link href="/guide" className="hover:text-primary-600">Guide</Link>
-            <Link href="/chat" className="text-primary-600 font-semibold">Chatbot</Link>
-            <Link href="/resources" className="hover:text-primary-600">Resources</Link>
-            <a href="https://github.com/HosungYou/ScholaRAG-helper" target="_blank" rel="noopener noreferrer">
+          <nav className="hidden md:flex gap-8 items-center text-sm">
+            <AnimatedLink href="/guide">Documentation</AnimatedLink>
+            <AnimatedLink href="/chat" active>Chatbot</AnimatedLink>
+            <AnimatedLink href="/about">About</AnimatedLink>
+            <a
+              href="https://github.com/HosungYou/ScholaRAG"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted hover:text-foreground transition-colors"
+            >
               <Github className="w-5 h-5" />
             </a>
           </nav>
@@ -184,116 +202,142 @@ export default function ChatPage() {
       </header>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto">
-          {/* Page Title */}
-          <div className="text-center mb-8">
-            <h2 className="text-4xl font-bold mb-4">AI-Powered Chatbot</h2>
-            <p className="text-gray-600 text-lg">
-              Get instant answers about ScholaRAG with RAG-powered assistance
-            </p>
-          </div>
+      <div className="max-w-4xl mx-auto px-6 py-12">
+        {/* Page Title */}
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold tracking-tight mb-4">AI-Powered Chatbot</h1>
+          <p className="text-muted text-lg">
+            Get instant answers about ScholaRAG with Claude Sonnet 4.5 integration
+          </p>
+        </div>
 
-          {/* Chat Container */}
-          <div className="card h-[600px] flex flex-col">
-            {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-6">
-              {messages.map((message, i) => (
+        {/* Chat Container */}
+        <div className="border border-border rounded-lg bg-white h-[600px] flex flex-col">
+          {/* Messages */}
+          <div className="flex-1 overflow-y-auto p-6 space-y-6">
+            {messages.map((message, i) => (
+              <div
+                key={i}
+                className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+              >
                 <div
-                  key={i}
-                  className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                  className={`max-w-[80%] p-4 rounded-lg ${
+                    message.role === 'user'
+                      ? 'bg-foreground text-background'
+                      : 'bg-gray-100 text-foreground'
+                  }`}
                 >
-                  <div
-                    className={`max-w-[80%] p-4 rounded-lg ${
-                      message.role === 'user'
-                        ? 'bg-primary-600 text-white'
-                        : 'bg-gray-100 text-gray-900'
-                    }`}
-                  >
-                    <div className="text-sm whitespace-pre-wrap">{message.content}</div>
-                    <div className={`text-xs mt-2 ${
-                      message.role === 'user' ? 'text-primary-100' : 'text-gray-500'
-                    }`}>
-                      {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                    </div>
+                  <div className="text-sm whitespace-pre-wrap">{message.content}</div>
+                  <div className={`text-xs mt-2 ${
+                    message.role === 'user' ? 'text-gray-400' : 'text-muted'
+                  }`}>
+                    {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </div>
                 </div>
-              ))}
+              </div>
+            ))}
 
-              {isLoading && (
-                <div className="flex justify-start">
-                  <div className="bg-gray-100 p-4 rounded-lg flex items-center gap-2">
-                    <Loader2 className="w-5 h-5 animate-spin text-gray-500" />
-                    <span className="text-sm text-gray-500">Thinking...</span>
-                  </div>
+            {isLoading && (
+              <div className="flex justify-start">
+                <div className="bg-gray-100 p-4 rounded-lg flex items-center gap-2">
+                  <Loader2 className="w-5 h-5 animate-spin text-muted" />
+                  <span className="text-sm text-muted">Thinking...</span>
                 </div>
-              )}
-
-              <div ref={messagesEndRef} />
-            </div>
-
-            {/* Input Area */}
-            <div className="border-t border-gray-200 p-6">
-              <div className="flex gap-3">
-                <textarea
-                  value={input}
-                  onChange={e => setInput(e.target.value)}
-                  onKeyPress={handleKeyPress}
-                  placeholder="Ask about ScholaRAG workflow, PRISMA, queries, troubleshooting..."
-                  className="flex-1 resize-none rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
-                  rows={3}
-                  disabled={isLoading}
-                />
-                <button
-                  onClick={sendMessage}
-                  disabled={!input.trim() || isLoading}
-                  className="bg-primary-600 text-white px-6 rounded-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
-                  aria-label="Send message"
-                >
-                  <Send className="w-5 h-5" />
-                  <span className="font-medium">Send</span>
-                </button>
               </div>
-              <div className="flex items-center justify-between mt-3">
-                <p className="text-xs text-gray-500">
-                  Powered by Claude Sonnet 4.5 | Press Enter to send, Shift+Enter for new line
-                </p>
-                <Link href="/guide" className="text-xs text-primary-600 hover:underline">
-                  View Documentation
-                </Link>
-              </div>
-            </div>
+            )}
+
+            <div ref={messagesEndRef} />
           </div>
 
-          {/* Quick Tips */}
-          <div className="mt-8 grid md:grid-cols-3 gap-4">
-            <div className="card p-4">
-              <h3 className="font-bold text-sm mb-2">Example Questions</h3>
-              <ul className="text-xs text-gray-600 space-y-1">
-                <li>• How do I design a focused query?</li>
-                <li>• What is PRISMA screening?</li>
-                <li>• Show me Stage 1 workflow</li>
-              </ul>
+          {/* Input Area */}
+          <div className="border-t border-border p-6">
+            <div className="flex gap-3">
+              <textarea
+                value={input}
+                onChange={e => setInput(e.target.value)}
+                onKeyPress={handleKeyPress}
+                placeholder="Ask about ScholaRAG workflow, PRISMA, queries, troubleshooting..."
+                className="flex-1 resize-none rounded-lg border border-border bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:border-foreground"
+                rows={3}
+                disabled={isLoading}
+              />
+              <button
+                onClick={sendMessage}
+                disabled={!input.trim() || isLoading}
+                className="bg-foreground text-background px-6 rounded-lg hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
+                aria-label="Send message"
+              >
+                <Send className="w-5 h-5" />
+                <span className="font-medium">Send</span>
+              </button>
             </div>
-            <div className="card p-4">
-              <h3 className="font-bold text-sm mb-2">Troubleshooting</h3>
-              <ul className="text-xs text-gray-600 space-y-1">
-                <li>• PRISMA returned 0 papers</li>
-                <li>• PDF download failed</li>
-                <li>• API key error</li>
-              </ul>
-            </div>
-            <div className="card p-4">
-              <h3 className="font-bold text-sm mb-2">Code Examples</h3>
-              <ul className="text-xs text-gray-600 space-y-1">
-                <li>• Show YAML template</li>
-                <li>• Query syntax example</li>
-                <li>• Research profile config</li>
-              </ul>
+            <div className="flex items-center justify-between mt-3">
+              <p className="text-xs text-muted">
+                Powered by Claude Sonnet 4.5 | Press Enter to send, Shift+Enter for new line
+              </p>
+              <Link href="/guide" className="text-xs text-foreground hover:underline">
+                View Documentation
+              </Link>
             </div>
           </div>
         </div>
+
+        {/* Quick Tips */}
+        <div className="mt-8 grid md:grid-cols-3 gap-4">
+          <div className="border border-border rounded-lg p-4 bg-white">
+            <h3 className="font-semibold text-sm mb-2">Example Questions</h3>
+            <ul className="text-xs text-muted space-y-1">
+              <li>• How do I design a focused query?</li>
+              <li>• What is PRISMA screening?</li>
+              <li>• Show me Stage 1 workflow</li>
+            </ul>
+          </div>
+          <div className="border border-border rounded-lg p-4 bg-white">
+            <h3 className="font-semibold text-sm mb-2">Troubleshooting</h3>
+            <ul className="text-xs text-muted space-y-1">
+              <li>• PRISMA returned 0 papers</li>
+              <li>• PDF download failed</li>
+              <li>• API key error</li>
+            </ul>
+          </div>
+          <div className="border border-border rounded-lg p-4 bg-white">
+            <h3 className="font-semibold text-sm mb-2">Code Examples</h3>
+            <ul className="text-xs text-muted space-y-1">
+              <li>• Show YAML template</li>
+              <li>• Query syntax example</li>
+              <li>• Research profile config</li>
+            </ul>
+          </div>
+        </div>
       </div>
+
+      {/* Footer */}
+      <footer className="border-t border-border mt-20">
+        <div className="max-w-7xl mx-auto px-6 py-8">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+              <div className="font-medium mb-2">ScholaRAG</div>
+              <p className="text-sm text-muted">
+                Open-source research AI platform
+              </p>
+            </div>
+            <div className="flex gap-6 text-sm text-muted">
+              <AnimatedLink href="/guide">Documentation</AnimatedLink>
+              <a
+                href="https://github.com/HosungYou/ScholaRAG"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-foreground transition-colors"
+              >
+                GitHub
+              </a>
+            </div>
+          </div>
+          <div className="mt-8 pt-8 border-t border-border text-xs text-muted">
+            Built with Next.js, Tailwind CSS, and Claude AI. Deployed on Vercel.
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
