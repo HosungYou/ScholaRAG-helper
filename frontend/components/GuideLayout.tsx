@@ -24,6 +24,8 @@ interface GuideLayoutProps {
   githubLabel?: string
 }
 
+const quickstartChapter = { number: 0, title: '5분 빠른 시작', href: '/guide/quickstart' }
+
 const setupTheoryChapters: Chapter[] = [
   { number: 1, title: 'Introduction', href: '/guide/01-introduction' },
   { number: 2, title: 'Getting Started', href: '/guide/02-getting-started' },
@@ -36,7 +38,7 @@ const practicalUseChapters: Chapter[] = [
   { number: 6, title: 'Documentation & Writing', href: '/guide/06-documentation-writing' },
 ]
 
-const chapters: Chapter[] = [...setupTheoryChapters, ...practicalUseChapters]
+const chapters: Chapter[] = [quickstartChapter, ...setupTheoryChapters, ...practicalUseChapters]
 
 export default function GuideLayout({ children, githubUrl, githubLabel = "View on GitHub" }: GuideLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -134,6 +136,18 @@ export default function GuideLayout({ children, githubUrl, githubLabel = "View o
               }`}
             >
               Overview
+            </Link>
+
+            {/* Quick Start - Prominent */}
+            <Link
+              href={quickstartChapter.href}
+              className={`block px-3 py-2 mt-4 text-sm rounded-md transition-colors font-medium ${
+                pathname?.includes(quickstartChapter.href)
+                  ? 'bg-gray-900 text-white'
+                  : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
+              }`}
+            >
+              🚀 {quickstartChapter.title}
             </Link>
 
             {/* Setup & Theory Section */}

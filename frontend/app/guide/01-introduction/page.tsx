@@ -2,7 +2,6 @@ import GuideLayout from '@/components/GuideLayout'
 import Link from 'next/link'
 import Image from 'next/image'
 import Mermaid from '@/components/Mermaid'
-import { CodeBlock } from '@/components/CodeBlock'
 
 export default function IntroductionPage() {
   return (
@@ -107,86 +106,26 @@ export default function IntroductionPage() {
       <h2 id="database-strategy">Database Strategy</h2>
 
       <p>
-        ScholaRAG supports <strong>comprehensive multi-database coverage</strong> with both free open-access sources and institutional databases for broader reach:
+        ScholaRAG supports <strong>comprehensive multi-database coverage</strong> with both free open-access sources (Semantic Scholar, OpenAlex, arXiv) and institutional databases (Scopus, Web of Science) for broader reach.
       </p>
 
-      <h3 className="text-lg font-semibold mt-6 mb-4">Open Access Databases (Free, No Setup Required)</h3>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
-        <div className="border border-gray-300 rounded-lg p-5 bg-white hover:border-gray-900 hover:shadow-lg transition-all">
-          <h4 className="font-semibold mb-2 text-gray-900">📚 Semantic Scholar</h4>
-          <p className="text-sm mb-3 text-gray-600">CS, Engineering, and General Sciences</p>
-          <ul className="text-xs space-y-1 mb-0 text-gray-700">
-            <li>✅ 200M+ papers indexed</li>
-            <li>✅ Free API (no key needed)</li>
-            <li>✅ ~40% open access PDFs</li>
-            <li>✅ AI-generated TL;DR summaries</li>
-          </ul>
-        </div>
-        <div className="border border-gray-300 rounded-lg p-5 bg-white hover:border-gray-900 hover:shadow-lg transition-all">
-          <h4 className="font-semibold mb-2 text-gray-900">🌍 OpenAlex</h4>
-          <p className="text-sm mb-3 text-gray-600">All fields, comprehensive metadata</p>
-          <ul className="text-xs space-y-1 mb-0 text-gray-700">
-            <li>✅ 250M+ works catalogued</li>
-            <li>✅ Free API (unlimited)</li>
-            <li>✅ ~50% open access links</li>
-            <li>✅ Rich metadata (citations, authors)</li>
-          </ul>
-        </div>
-        <div className="border border-gray-300 rounded-lg p-5 bg-white hover:border-gray-900 hover:shadow-lg transition-all">
-          <h4 className="font-semibold mb-2 text-gray-900">📄 arXiv</h4>
-          <p className="text-sm mb-3 text-gray-600">STEM preprints</p>
-          <ul className="text-xs space-y-1 mb-0 text-gray-700">
-            <li>✅ 2.4M+ preprints</li>
-            <li>✅ Free API (no key needed)</li>
-            <li>✅ 100% PDF access</li>
-            <li>✅ Latest research (pre-publication)</li>
-          </ul>
-        </div>
-      </div>
-
-      <h3 className="text-lg font-semibold mt-8 mb-4">Institutional Databases (Optional, Requires Access)</h3>
-
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
-        <div className="border border-gray-300 rounded-lg p-5 bg-white hover:border-gray-900 hover:shadow-lg transition-all">
-          <h4 className="font-semibold mb-2 text-gray-900">🔬 Scopus</h4>
-          <p className="text-sm mb-3 text-gray-600">Comprehensive multidisciplinary index</p>
-          <ul className="text-xs space-y-1 mb-0 text-gray-700">
-            <li>✅ 87M+ records (1788-present)</li>
-            <li>⚠️ Requires institutional access</li>
-            <li>📊 Metadata only (no PDFs)</li>
-            <li>✅ Excellent for broad coverage</li>
-          </ul>
+        <div className="border border-gray-300 rounded-lg p-4 bg-white">
+          <h4 className="font-semibold mb-2">🌐 Open Access (Free)</h4>
+          <p className="text-sm text-muted-foreground mb-0">
+            Semantic Scholar, OpenAlex, arXiv — 450M+ papers, ~50% PDF access
+          </p>
         </div>
-        <div className="border border-gray-300 rounded-lg p-5 bg-white hover:border-gray-900 hover:shadow-lg transition-all">
-          <h4 className="font-semibold mb-2 text-gray-900">📖 Web of Science</h4>
-          <p className="text-sm mb-3 text-gray-600">High-impact research index</p>
-          <ul className="text-xs space-y-1 mb-0 text-gray-700">
-            <li>✅ 171M+ records (1900-present)</li>
-            <li>⚠️ Requires institutional subscription</li>
-            <li>📊 Metadata only (no PDFs)</li>
-            <li>✅ Citation network analysis</li>
-          </ul>
+        <div className="border border-gray-300 rounded-lg p-4 bg-white">
+          <h4 className="font-semibold mb-2">🏛️ Institutional (Optional)</h4>
+          <p className="text-sm text-muted-foreground mb-0">
+            Scopus, Web of Science — metadata only, 3-5x more papers found
+          </p>
         </div>
       </div>
 
-      <div className="callout callout-info">
-        <p className="font-semibold mb-2">💡 Complete Retrieval Strategy</p>
-        <div className="text-sm space-y-2 mb-0">
-          <p><strong>ScholaRAG fetches ALL available papers</strong> from each database (no arbitrary limits):</p>
-          <ul className="ml-4 space-y-1">
-            <li>✅ Comprehensive coverage - never miss relevant papers</li>
-            <li>✅ Newest-first ordering - recent papers prioritized</li>
-            <li>✅ Smart pagination - handles databases with 20K+ results</li>
-            <li>✅ User confirmation - interactive prompts for large datasets</li>
-            <li>✅ Year cutoff suggestions - manage scope effectively</li>
-          </ul>
-          <p className="mt-3"><strong>Institutional databases</strong> provide metadata only but dramatically increase paper identification (3-5x more papers found).</p>
-        </div>
-      </div>
-
-      <p>
-        You'll set up access to these databases in <Link href="/guide/02-getting-started#step6-database">Step 6 of Getting Started</Link>, and learn to query them effectively in <Link href="/guide/04-implementation#stage-2">Stage 2 of the workflow</Link>.
+      <p className="text-sm">
+        <Link href="/guide/03-core-concepts#databases" className="underline">자세한 데이터베이스 전략 보기 →</Link>
       </p>
 
       <h2 id="core-concepts">Core Concepts</h2>
@@ -253,51 +192,25 @@ graph TD
       <h3 id="workflow">3. 7-Stage Workflow</h3>
 
       <p>
-        ScholaRAG breaks down the complex process into 7 conversational stages with Claude Code:
+        ScholaRAG breaks down the complex process into <strong>7 conversational stages</strong> with Claude Code — from research question definition to publication-ready documentation.
       </p>
 
-      <Mermaid
-        scale={1.3}
-        chart={`
-graph LR
-    A[Stage 1<br/>Research Domain<br/>15 min] --> B[Stage 2<br/>Query Strategy<br/>10 min]
-    B --> C[Stage 3<br/>PRISMA Config<br/>20 min]
-    C --> D[Stage 4<br/>RAG Design<br/>15 min]
-    D --> E[Stage 5<br/>Execution Plan<br/>10 min]
-    E --> F[Stage 6<br/>Research Queries<br/>2-3 hrs]
-    F --> G[Stage 7<br/>Documentation<br/>1-2 hrs]
-    G --> H[Your RAG System]
-
-    style A fill:#e0e7ff
-    style B fill:#ddd6fe
-    style C fill:#fce7f3
-    style D fill:#fef3c7
-    style E fill:#dcfce7
-    style F fill:#c7f3e7
-    style G fill:#f3e7c7
-    style H fill:#bbf7d0
-      `} />
-
-      <div className="space-y-4 my-8">
-        {[
-          { stage: 1, title: 'Research Domain Setup', time: '15 min', desc: 'Define your research question, scope, and objectives' },
-          { stage: 2, title: 'Query Strategy Design', time: '10 min', desc: 'Craft Boolean search queries for multiple databases' },
-          { stage: 3, title: 'PRISMA Configuration', time: '20 min', desc: 'Set inclusion criteria and screen papers automatically' },
-          { stage: 4, title: 'RAG System Design', time: '15 min', desc: 'Configure vector database and embedding model' },
-          { stage: 5, title: 'Execution Plan', time: '10 min', desc: 'Review automation pipeline before execution' },
-          { stage: 6, title: 'Research Conversation', time: '2-3 hrs automated', desc: 'Download PDFs, build RAG, run queries' },
-          { stage: 7, title: 'Documentation Writing', time: '1-2 hrs', desc: 'Generate PRISMA diagrams and research reports' },
-        ].map((stage) => (
-          <div key={stage.stage} className="flex gap-4 items-start border-l-2 border-border pl-4">
-            <div className="text-xl font-bold text-muted-foreground w-8 flex-shrink-0">{stage.stage}</div>
-            <div className="flex-1">
-              <h4 className="font-semibold mb-1">{stage.title}</h4>
-              <p className="text-sm text-muted mb-1">{stage.desc}</p>
-              <p className="text-xs text-muted-foreground font-mono">{stage.time}</p>
-            </div>
-          </div>
-        ))}
+      <div className="border border-gray-300 rounded-lg p-4 bg-white my-6">
+        <div className="flex items-center gap-2 text-sm">
+          <span className="font-mono">Stage 1-4</span>
+          <span className="text-muted-foreground">→</span>
+          <span>Setup & Configuration (~60 min)</span>
+        </div>
+        <div className="flex items-center gap-2 text-sm mt-2">
+          <span className="font-mono">Stage 5-7</span>
+          <span className="text-muted-foreground">→</span>
+          <span>Execution & Analysis (~3-5 hrs automated)</span>
+        </div>
       </div>
+
+      <p className="text-sm">
+        <Link href="/guide/03-core-concepts#workflow" className="underline">7단계 워크플로우 상세 보기 →</Link>
+      </p>
 
       <h2 id="who-should-use">Who Should Use ScholaRAG?</h2>
 
@@ -357,24 +270,25 @@ graph LR
 
       <h2 id="next-steps">Next Steps</h2>
 
-      <p>
-        Ready to start building? Head to <Link href="/guide/02-getting-started">Chapter 2: Getting Started</Link> to set up your environment and run your first ScholaRAG workflow.
-      </p>
-
-      <div className="bg-gray-900 text-gray-100 rounded-lg p-6 my-8">
-        <p className="text-sm text-gray-400 mb-2">Quick start preview:</p>
-        <CodeBlock
-        language="bash"
-        code={`# Clone the repository
-git clone https://github.com/HosungYou/ScholaRAG.git
-cd ScholaRAG
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Open in VS Code with Claude Code
-code .`}
-      />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-8">
+        <Link
+          href="/guide/quickstart"
+          className="border-2 border-gray-900 hover:bg-gray-50 rounded-lg p-6 transition-colors"
+        >
+          <h3 className="font-bold mb-2">5분 빠른 시작 →</h3>
+          <p className="text-sm text-muted-foreground mb-0">
+            프롬프트 하나로 즉시 시작하기
+          </p>
+        </Link>
+        <Link
+          href="/guide/04-tutorial"
+          className="border border-gray-300 hover:border-gray-900 rounded-lg p-6 transition-colors"
+        >
+          <h3 className="font-bold mb-2">튜토리얼</h3>
+          <p className="text-sm text-muted-foreground mb-0">
+            실제 예제로 전체 워크플로우 배우기
+          </p>
+        </Link>
       </div>
 
       <p className="text-sm text-muted mt-8">

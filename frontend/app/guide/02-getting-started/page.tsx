@@ -121,49 +121,13 @@ My research topic: [Describe your research question here]`}
 └── requirements.txt        ← Python dependencies`}
       />
 
-      <h3 id="workflow-overview">The 7-Stage Workflow</h3>
-
       <p>
-        Each stage has a dedicated prompt in the <code>prompts/</code> folder. You copy-paste each prompt to Claude Code, have a conversation, and Claude automatically runs the corresponding script when ready.
+        Each stage has a dedicated prompt in the <code>prompts/</code> folder. You copy-paste each prompt to Claude Code, and Claude automatically runs the corresponding script when ready.
       </p>
 
-      <div className="grid grid-cols-1 gap-3 my-6">
-        <div className="border border-gray-300 rounded p-3 bg-white">
-          <p className="font-semibold text-sm">Stage 1: Research Domain Setup (15 min)</p>
-          <p className="text-xs text-muted-foreground mb-0">Define scope, research questions, constraints</p>
-        </div>
-        <div className="border border-gray-300 rounded p-3 bg-white">
-          <p className="font-semibold text-sm">Stage 2: Query Strategy (10 min)</p>
-          <p className="text-xs text-muted-foreground mb-0">Design Boolean queries, select databases</p>
-        </div>
-        <div className="border border-gray-300 rounded p-3 bg-white">
-          <p className="font-semibold text-sm">Stage 3: PRISMA Configuration (20 min)</p>
-          <p className="text-xs text-muted-foreground mb-0">Configure AI-PRISMA rubric with evaluation criteria</p>
-        </div>
-        <div className="border border-gray-300 rounded p-3 bg-white">
-          <p className="font-semibold text-sm">Stage 4: RAG Design (15 min)</p>
-          <p className="text-xs text-muted-foreground mb-0">Plan vector database and chunking strategy</p>
-        </div>
-        <div className="border border-gray-300 rounded p-3 bg-white">
-          <p className="font-semibold text-sm">Stage 5: Execution Plan (1-3 hrs, automated)</p>
-          <p className="text-xs text-muted-foreground mb-0">Fetch papers → Deduplicate → Screen → Download PDFs → Build RAG</p>
-        </div>
-        <div className="border border-gray-300 rounded p-3 bg-white">
-          <p className="font-semibold text-sm">Stage 6: Research Conversation (ongoing)</p>
-          <p className="text-xs text-muted-foreground mb-0">Query your RAG system for insights and analysis</p>
-        </div>
-        <div className="border border-gray-300 rounded p-3 bg-white">
-          <p className="font-semibold text-sm">Stage 7: Documentation & Writing (ongoing)</p>
-          <p className="text-xs text-muted-foreground mb-0">Generate PRISMA diagrams and prepare publication materials</p>
-        </div>
-      </div>
-
-      <div className="callout callout-info">
-        <p className="font-semibold mb-2">💡 Key Insight</p>
-        <p className="mb-0">
-          You never manually run <code>python scripts/01_fetch_papers.py</code>. Instead, Claude Code reads the prompts, understands which stage you're in, and executes the appropriate scripts automatically when needed.
-        </p>
-      </div>
+      <p className="text-sm">
+        <Link href="/guide/03-core-concepts#workflow" className="underline">7단계 워크플로우 상세 보기 →</Link>
+      </p>
 
       <h2 id="what-gets-created">What Gets Created</h2>
 
