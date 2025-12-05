@@ -10,6 +10,81 @@ interface Message {
   timestamp: Date
 }
 
+// Demo mode responses for when API is unavailable
+const DEMO_RESPONSES: Record<string, string> = {
+  workflow: `**ScholaRAG uses a 7-stage workflow:**
+
+1. **Stage 1: Research Domain Setup** (15 min) - Define your research question and scope
+2. **Stage 2: Query Strategy** (10 min) - Design Boolean search queries
+3. **Stage 3: PRISMA Configuration** (20 min) - Set AI-PRISMA screening criteria
+4. **Stage 4: RAG Design** (15 min) - Configure vector database
+5. **Stage 5: Execution Plan** (10 min) - Review automation pipeline
+6. **Stage 6: Research Conversation** (2-3 hrs) - Query your RAG system
+7. **Stage 7: Documentation Writing** (1-2 hrs) - Generate PRISMA diagrams
+
+Visit [Quick Start](/guide/quickstart) to get started!`,
+
+  prisma: `**AI-PRISMA** is ScholaRAG's multi-dimensional screening system:
+
+- Uses **PICO framework** (Population, Intervention, Comparison, Outcomes)
+- **Confidence thresholds**: Auto-include ≥90%, Auto-exclude ≤10%, Human-review 11-89%
+- **Evidence grounding**: AI must quote abstract text to justify decisions
+- Achieves **10-20% pass rates** matching manual systematic review standards
+
+Learn more in [Core Concepts](/guide/03-core-concepts).`,
+
+  query: `**Database Strategy in ScholaRAG:**
+
+**Open Access (Free):**
+- Semantic Scholar (200M+ papers)
+- OpenAlex (250M+ works)
+- arXiv (2.4M+ preprints)
+
+**Institutional (Optional):**
+- Scopus, Web of Science
+
+**Query syntax:** Boolean operators (AND, OR, NOT) with field-specific search.
+
+Example: \`(chatbot OR "conversational agent") AND "language learning"\``,
+
+  start: `**Quick Start:**
+
+1. Install VS Code + Claude Code extension
+2. Copy the setup prompt from [Quick Start](/guide/quickstart)
+3. Answer 3 questions: project name, research question, domain
+4. Wait 3 minutes for automatic setup
+
+That's it! Claude Code handles everything automatically.`,
+
+  default: `I can help you with:
+
+- **7-stage workflow** - How ScholaRAG works
+- **PRISMA screening** - AI-powered paper filtering
+- **Query design** - Boolean search strategies
+- **Troubleshooting** - Common issues and fixes
+
+Try asking: "What is the 7-stage workflow?" or "How does PRISMA work?"
+
+For full documentation, visit [the guide](/guide).`
+}
+
+function getDemoResponse(query: string): string {
+  const q = query.toLowerCase()
+  if (q.includes('workflow') || q.includes('stage') || q.includes('7') || q.includes('process')) {
+    return DEMO_RESPONSES.workflow
+  }
+  if (q.includes('prisma') || q.includes('screen') || q.includes('filter')) {
+    return DEMO_RESPONSES.prisma
+  }
+  if (q.includes('query') || q.includes('search') || q.includes('database')) {
+    return DEMO_RESPONSES.query
+  }
+  if (q.includes('start') || q.includes('setup') || q.includes('install') || q.includes('begin')) {
+    return DEMO_RESPONSES.start
+  }
+  return DEMO_RESPONSES.default
+}
+
 export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -68,9 +143,11 @@ export default function ChatPage() {
 
     } catch (error: any) {
       console.error('Chat error:', error)
+      // Fallback to demo mode
+      const demoResponse = getDemoResponse(userMessage.content)
       setMessages(prev => [...prev, {
         role: 'assistant',
-        content: `Sorry, I encountered an error: ${error.message}. Please check your API key and try again.`,
+        content: `⚡ **Demo Mode** (API unavailable)\n\n${demoResponse}\n\n---\n*For full AI-powered responses, the server needs an Anthropic API key.*`,
         timestamp: new Date()
       }])
     } finally {

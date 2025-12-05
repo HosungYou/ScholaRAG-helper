@@ -9,6 +9,21 @@ interface Message {
   timestamp: Date
 }
 
+// Simple demo responses for widget
+function getDemoResponse(query: string): string {
+  const q = query.toLowerCase()
+  if (q.includes('workflow') || q.includes('stage')) {
+    return '**7-Stage Workflow:**\n1. Research Domain Setup\n2. Query Strategy\n3. PRISMA Configuration\n4. RAG Design\n5. Execution Plan\n6. Research Conversation\n7. Documentation Writing\n\nVisit /guide/quickstart for details!'
+  }
+  if (q.includes('prisma') || q.includes('screen')) {
+    return '**AI-PRISMA** uses PICO framework with confidence thresholds (≥90% auto-include, ≤10% auto-exclude). See /guide/03-core-concepts for details.'
+  }
+  if (q.includes('start') || q.includes('setup')) {
+    return 'Visit /guide/quickstart - just copy one prompt to Claude Code and answer 3 questions!'
+  }
+  return 'I can help with: workflow, PRISMA, queries, troubleshooting. Visit /guide for full docs!'
+}
+
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([
@@ -68,9 +83,11 @@ export default function ChatWidget() {
 
     } catch (error) {
       console.error('Chat error:', error)
+      // Fallback to demo mode
+      const demoResponse = getDemoResponse(userMessage.content)
       setMessages(prev => [...prev, {
         role: 'assistant',
-        content: 'Sorry, I encountered an error. Please try again.',
+        content: `⚡ Demo Mode\n\n${demoResponse}`,
         timestamp: new Date()
       }])
     } finally {

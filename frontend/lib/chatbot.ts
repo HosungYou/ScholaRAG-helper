@@ -2,7 +2,7 @@
  * Chatbot RAG Logic for ScholaRAG Helper
  *
  * This module provides RAG (Retrieval-Augmented Generation) functionality
- * for the chatbot using ChromaDB vector search and Claude 3.5 Sonnet.
+ * for the chatbot using static knowledge base and Claude Sonnet 4.5.
  */
 
 import Anthropic from '@anthropic-ai/sdk'
@@ -28,56 +28,129 @@ export interface RAGContext {
 }
 
 /**
+ * Static knowledge base for RAG-like responses
+ */
+const STATIC_KNOWLEDGE = [
+  {
+    keywords: ['workflow', 'stage', '7', 'seven', 'process', 'step'],
+    content: `ScholaRAG uses a **7-stage workflow**:
+- **Stage 1**: Research Domain Setup (15 min) - Define research question and scope
+- **Stage 2**: Query Strategy (10 min) - Design Boolean search queries
+- **Stage 3**: PRISMA Configuration (20 min) - Set AI-PRISMA screening criteria
+- **Stage 4**: RAG Design (15 min) - Configure vector database
+- **Stage 5**: Execution Plan (10 min) - Review automation pipeline
+- **Stage 6**: Research Conversation (2-3 hrs) - Query your RAG system
+- **Stage 7**: Documentation Writing (1-2 hrs) - Generate PRISMA diagrams`
+  },
+  {
+    keywords: ['prisma', 'screen', 'filter', 'criteria', 'inclusion', 'exclusion'],
+    content: `**AI-PRISMA** is ScholaRAG's multi-dimensional screening system:
+- Uses PICO framework (Population, Intervention, Comparison, Outcomes)
+- Confidence thresholds: Auto-include ≥90%, Auto-exclude ≤10%, Human-review 11-89%
+- Evidence grounding: AI must quote abstract text to justify decisions
+- Achieves 10-20% pass rates matching manual systematic review standards`
+  },
+  {
+    keywords: ['rag', 'vector', 'database', 'chromadb', 'embedding'],
+    content: `**RAG Architecture** in ScholaRAG:
+- Vector database: ChromaDB (default) or FAISS
+- Embeddings: OpenAI text-embedding-3-small or local alternatives
+- Chunking: 1000 tokens with 200 token overlap
+- Retrieval: Top-k semantic search with MMR diversity`
+  },
+  {
+    keywords: ['query', 'search', 'boolean', 'database', 'semantic scholar', 'openalex', 'arxiv'],
+    content: `**Database Strategy**:
+- Open Access (Free): Semantic Scholar (200M+ papers), OpenAlex (250M+ works), arXiv (2.4M+ preprints)
+- Institutional (Optional): Scopus, Web of Science
+- Query syntax: Boolean operators (AND, OR, NOT) with field-specific search`
+  },
+  {
+    keywords: ['start', 'setup', 'install', 'begin', 'quickstart', 'quick'],
+    content: `**Quick Start**:
+1. Install VS Code + Claude Code extension
+2. Copy setup prompt to Claude Code
+3. Answer 3 questions: project name, research question, domain
+4. Wait 3 minutes for automatic setup
+Visit /guide/quickstart for the copy-paste prompt!`
+  },
+  {
+    keywords: ['error', 'problem', 'issue', 'troubleshoot', 'fix', 'help'],
+    content: `**Common Issues**:
+- "Python not found": Install from python.org/downloads
+- "API key error": Set ANTHROPIC_API_KEY in .env
+- "0 papers found": Broaden query terms or check date range
+- "PDF download failed": Some papers require institutional access`
+  }
+]
+
+/**
  * System prompt for the ScholaRAG Helper chatbot
  */
-const SYSTEM_PROMPT = `You are a helpful AI assistant for ScholaRAG - a system that helps researchers build custom RAG systems for literature review.
+const SYSTEM_PROMPT = `You are a helpful AI assistant for ScholaRAG - an open-source system that helps researchers build custom RAG systems for systematic literature review following PRISMA 2020 guidelines.
 
 Your role is to:
-1. Answer questions about ScholaRAG's 5-stage workflow
-2. Explain PRISMA configuration and screening
+1. Answer questions about ScholaRAG's **7-stage workflow** (not 5-stage - this was updated!)
+2. Explain PRISMA configuration and AI-PRISMA screening
 3. Help with query design and search strategies
 4. Troubleshoot common issues
 5. Provide examples and code snippets
 6. Guide users through the documentation
 
+The 7 stages are:
+1. Research Domain Setup (15 min)
+2. Query Strategy Design (10 min)
+3. PRISMA Configuration (20 min)
+4. RAG System Design (15 min)
+5. Execution Plan (10 min)
+6. Research Conversation (2-3 hrs automated)
+7. Documentation & Writing (1-2 hrs)
+
 Guidelines:
 - Be concise but thorough
-- Use examples from the documentation
-- Cite specific sections when relevant (e.g., "According to Stage 2: Query Strategy...")
-- If you don't know something, suggest where to find the answer
+- Use the provided context when available
+- Cite specific stages when relevant (e.g., "In Stage 2: Query Strategy...")
+- If you don't know something, suggest visiting the documentation
 - Use markdown formatting for code and structured content
 - Be encouraging and supportive to researchers
 
-When answering:
-- First check if the retrieved context is relevant
-- If context is relevant, use it to ground your answer
-- If context is not relevant, use your general knowledge but acknowledge limitations
-- Always be accurate about technical details (APIs, code, configurations)
-
-Available documentation topics:
-- CLAUDE.md (18,000-word implementation guide)
-- 5-stage prompts (research setup, query strategy, PRISMA, RAG design, execution)
-- Research profile templates (Education, Medicine, Social Science)
-- Workshop hands-on guide (3-hour curriculum)
-- Quick start guide
+Key technologies:
+- Claude Sonnet 4.5 / Haiku 4.5 for AI screening
+- ChromaDB for vector storage
+- Semantic Scholar, OpenAlex, arXiv for paper retrieval
+- Python backend with conversation-driven automation
 `
 
 /**
- * Search ChromaDB for relevant documents (stub - will be replaced with actual implementation)
- *
- * In production, this would call a Python API or use a Node.js ChromaDB client.
- * For now, we'll implement a simple fallback that returns empty results.
+ * Search static knowledge base for relevant content
+ * Uses keyword matching for lightweight RAG-like functionality
  */
-async function searchVectorDB(query: string, topK: number = 5): Promise<RAGContext[]> {
-  // TODO: Implement actual ChromaDB search
-  // Options:
-  // 1. Call Python API (FastAPI endpoint)
-  // 2. Use chromadb-client (Node.js package)
-  // 3. Use HTTP API directly
+function searchStaticKnowledge(query: string): RAGContext[] {
+  const queryLower = query.toLowerCase()
+  const results: RAGContext[] = []
 
-  // For now, return empty (chatbot will work without RAG, using general knowledge)
-  console.warn('Vector DB search not implemented - using general knowledge only')
-  return []
+  for (const doc of STATIC_KNOWLEDGE) {
+    const matchCount = doc.keywords.filter(keyword =>
+      queryLower.includes(keyword.toLowerCase())
+    ).length
+
+    if (matchCount > 0) {
+      results.push({
+        content: doc.content,
+        metadata: {
+          path: 'static',
+          filename: 'knowledge_base',
+          chunk_index: STATIC_KNOWLEDGE.indexOf(doc)
+        },
+        similarity: matchCount / doc.keywords.length
+      })
+    }
+  }
+
+  // Sort by relevance and return top results
+  return results
+    .sort((a, b) => b.similarity - a.similarity)
+    .slice(0, 3)
 }
 
 /**
@@ -97,12 +170,12 @@ export async function generateChatResponse(
         .pop()
 
       if (lastUserMessage) {
-        const ragResults = await searchVectorDB(lastUserMessage.content)
+        const ragResults = searchStaticKnowledge(lastUserMessage.content)
 
         if (ragResults.length > 0) {
-          context = '\n\n**Retrieved Context:**\n\n'
+          context = '\n\n**Relevant Information:**\n\n'
           ragResults.forEach((result, i) => {
-            context += `[${i + 1}] From ${result.metadata.filename}:\n${result.content}\n\n`
+            context += `${result.content}\n\n`
           })
         }
       }
@@ -125,7 +198,7 @@ export async function generateChatResponse(
 
     // Call Claude API
     const response = await anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
+      model: 'claude-sonnet-4-5-20250514',
       max_tokens: 2048,
       system: SYSTEM_PROMPT,
       messages: claudeMessages as any,
@@ -163,12 +236,12 @@ export async function streamChatResponse(
         .pop()
 
       if (lastUserMessage) {
-        const ragResults = await searchVectorDB(lastUserMessage.content)
+        const ragResults = searchStaticKnowledge(lastUserMessage.content)
 
         if (ragResults.length > 0) {
-          context = '\n\n**Retrieved Context:**\n\n'
+          context = '\n\n**Relevant Information:**\n\n'
           ragResults.forEach((result, i) => {
-            context += `[${i + 1}] From ${result.metadata.filename}:\n${result.content}\n\n`
+            context += `${result.content}\n\n`
           })
         }
       }
@@ -191,7 +264,7 @@ export async function streamChatResponse(
 
     // Stream response
     const stream = await anthropic.messages.stream({
-      model: 'claude-3-5-sonnet-20241022',
+      model: 'claude-sonnet-4-5-20250514',
       max_tokens: 2048,
       system: SYSTEM_PROMPT,
       messages: claudeMessages as any,

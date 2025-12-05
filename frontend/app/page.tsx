@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight, Github, ExternalLink } from 'lucide-react'
+import { ArrowRight, Github, ExternalLink, MessageCircle } from 'lucide-react'
 import { motion } from 'framer-motion'
 import TypewriterText from '@/components/TypewriterText'
 import AnimatedCounter from '@/components/AnimatedCounter'
@@ -78,7 +78,8 @@ export default function HomePage() {
               href="/chat"
               className="inline-flex items-center gap-2 px-6 py-3 border border-border text-foreground rounded-md text-sm font-medium hover:border-foreground hover:scale-105 transition-all"
             >
-              Try Demo
+              <MessageCircle className="w-4 h-4" />
+              AI Assistant
             </Link>
           </motion.div>
         </div>
