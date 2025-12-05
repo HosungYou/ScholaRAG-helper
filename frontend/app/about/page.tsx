@@ -153,7 +153,7 @@ export default function AboutPage() {
           <h2 className="text-3xl font-bold text-gray-900 mb-8 tracking-tight">Technology</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { category: "AI Models", items: ["Claude Sonnet 4.5", "Claude Haiku 4.5", "GPT-5-Codex"] },
+              { category: "AI Models", items: ["Claude Sonnet 4.5", "Claude Haiku 4.5", "Claude Opus 4"] },
               { category: "Databases", items: ["Semantic Scholar", "OpenAlex", "arXiv", "Scopus"] },
               { category: "Vector Stores", items: ["ChromaDB", "FAISS", "Qdrant"] },
               { category: "Framework", items: ["Python 3.9+", "LangChain", "VS Code"] }
@@ -203,12 +203,12 @@ export default function AboutPage() {
                   <p className="text-xs font-mono text-gray-400">Best for automation · Advanced reasoning</p>
                 </div>
                 <div className="border-l-2 border-gray-900 pl-4">
-                  <p className="font-semibold text-gray-900 mb-2">GPT-5-Codex</p>
+                  <p className="font-semibold text-gray-900 mb-2">Claude Haiku 4.5</p>
                   <p className="text-sm text-gray-600 mb-2">
-                    Advanced code generation with superior reasoning for complex research workflows.
-                    Excellent for systematic review pipeline design and execution.
+                    Fastest and most cost-effective model for high-volume paper screening.
+                    Ideal for initial title/abstract filtering with ~$20 per 500-paper review.
                   </p>
-                  <p className="text-xs font-mono text-gray-400">Advanced codegen · Research-optimized</p>
+                  <p className="text-xs font-mono text-gray-400">High-speed screening · Cost-effective</p>
                 </div>
               </div>
             </div>

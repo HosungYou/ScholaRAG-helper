@@ -369,7 +369,7 @@ export default function GuideLayout({ children, githubUrl, githubLabel = "View o
               {githubUrl && (
                 <div className="mb-8 pb-6 border-b border-border flex items-center justify-between">
                   <div className="text-sm text-muted-foreground">
-                    This chapter corresponds to code in the researcherRAG repository
+                    This chapter corresponds to code in the ScholaRAG repository
                   </div>
                   <a
                     href={githubUrl}

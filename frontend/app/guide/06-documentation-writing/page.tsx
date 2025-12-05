@@ -6,7 +6,7 @@ import { CodeBlock } from '@/components/CodeBlock'
 export default function DocumentationWritingPage() {
   return (
     <GuideLayout
-      githubUrl="https://github.com/HosungYou/researcherRAG/blob/main/prompts/07_documentation_writing.md"
+      githubUrl="https://github.com/HosungYou/ScholaRAG/blob/main/prompts/07_documentation_writing.md"
       githubLabel="View Stage 7 Prompt"
     >
       <h1>Documentation & Writing</h1>
@@ -276,7 +276,7 @@ B[Records Screened<br/>n = YOUR_NUMBER<br/>XX duplicates removed]
           However, for most researchers, the Mermaid Live Editor approach above is simpler and produces publication-quality results.
         </p>
         <p className="text-sm mb-0">
-          See <a href="https://github.com/HosungYou/researcherRAG/tree/main/examples" target="_blank" rel="noopener" className="text-blue-600 underline">GitHub examples/</a> for Python automation scripts.
+          See <a href="https://github.com/HosungYou/ScholaRAG/tree/main/examples" target="_blank" rel="noopener" className="text-blue-600 underline">GitHub examples/</a> for Python automation scripts.
         </p>
       </div>
 
@@ -549,7 +549,7 @@ python generate_supplementary.py \\
           <div>
             <p className="font-semibold">Reproducibility:</p>
             <p className="text-xs">
-              Complete methodology including AI configuration, prompts, screening logs, and source code: <a href="https://github.com/HosungYou/researcherRAG" target="_blank" rel="noopener" className="text-blue-600 underline">https://github.com/HosungYou/researcherRAG</a>
+              Complete methodology including AI configuration, prompts, screening logs, and source code: <a href="https://github.com/HosungYou/ScholaRAG" target="_blank" rel="noopener" className="text-blue-600 underline">https://github.com/HosungYou/ScholaRAG</a>
             </p>
           </div>
         </div>
@@ -640,7 +640,7 @@ python generate_supplementary.py \\
                 <li>5. <strong>Docker:</strong> Containerized environment for exact replication</li>
                 <li>6. <strong>Fallback:</strong> Traditional 'human-only' protocol also provided</li>
               </ul>
-              <p className="mt-2 text-xs">Repository: <a href="https://github.com/HosungYou/researcherRAG" className="text-blue-600 underline">github.com/HosungYou/researcherRAG</a>"</p>
+              <p className="mt-2 text-xs">Repository: <a href="https://github.com/HosungYou/ScholaRAG" className="text-blue-600 underline">github.com/HosungYou/ScholaRAG</a></p>
             </div>
           </div>
         </details>

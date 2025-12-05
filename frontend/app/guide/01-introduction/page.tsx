@@ -348,7 +348,7 @@ graph LR
         <ul className="text-sm space-y-1 ml-4 mb-2">
           <li><strong>Claude Sonnet 4.5</strong> (Oct 2025): Currently the most effective coding model for research automation, achieving state-of-the-art performance on SWE-bench</li>
           <li><strong>Claude Haiku 4.5</strong> (Oct 2025): Frontier performance at 1/3 cost, 4-5x faster than Sonnet 3.5 - excellent for high-volume screening tasks</li>
-          <li><strong>GPT-5-Codex</strong>: Advanced code generation model with superior reasoning for complex research workflows</li>
+          <li><strong>Claude Opus 4</strong>: Most capable model for complex analysis and synthesis, ideal for final report generation</li>
         </ul>
         <p className="mb-0">
           A typical literature review (500 papers screened, 150 included) costs <strong>under $20 with Haiku 4.5</strong> or <strong>$25-40 with Sonnet 4.5</strong>. Compare this to weeks of manual labor!

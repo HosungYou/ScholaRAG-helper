@@ -14,7 +14,7 @@ export default function ChatWidget() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: 'Hi! I\'m here to help you with ScholaRAG. Ask me anything about the 5-stage workflow, PRISMA configuration, or troubleshooting!',
+      content: 'Hi! I\'m here to help you with ScholaRAG. Ask me anything about the 7-stage workflow, PRISMA configuration, or troubleshooting!',
       timestamp: new Date()
     }
   ])
@@ -173,7 +173,7 @@ export default function ChatWidget() {
               </button>
             </div>
             <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
-              Powered by Claude 3.5 Sonnet
+              Powered by Claude Sonnet 4.5
             </p>
           </div>
         </div>

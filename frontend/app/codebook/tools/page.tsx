@@ -167,7 +167,7 @@ export default function ToolsPage() {
             </p>
             <p className="text-sm text-gray-700">
               The ScholaRAG code lives on GitHub at{' '}
-              <code className="bg-white px-2 py-1 rounded border border-gray-300 font-mono text-xs">github.com/HosungYou/researcherRAG</code>.
+              <code className="bg-white px-2 py-1 rounded border border-gray-300 font-mono text-xs">github.com/HosungYou/ScholaRAG</code>.
               You clone it to your computer, customize for your research, and can contribute improvements back to the community.
             </p>
           </div>

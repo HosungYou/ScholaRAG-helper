@@ -6,7 +6,7 @@ import { CodeBlock } from '@/components/CodeBlock'
 export default function ResearchConversationPage() {
   return (
     <GuideLayout
-      githubUrl="https://github.com/HosungYou/researcherRAG/blob/main/prompts/06_research_conversation.md"
+      githubUrl="https://github.com/HosungYou/ScholaRAG/blob/main/prompts/06_research_conversation.md"
       githubLabel="View Stage 6 Prompt"
     >
       <h1>Research Conversation & Analysis</h1>
@@ -102,7 +102,7 @@ export default function ResearchConversationPage() {
         <p className="font-semibold mb-2">🔐 How to Run the RAG Interface</p>
         <div className="space-y-3">
           <p className="text-sm"><strong>Step 1: Open your terminal</strong> and navigate to your project:</p>
-          <pre className="bg-white p-2 rounded text-xs"><code>cd /path/to/your/researcherRAG-project</code></pre>
+          <pre className="bg-white p-2 rounded text-xs"><code>cd /path/to/your/ScholaRAG-project</code></pre>
 
           <p className="text-sm"><strong>Step 2: Run the interface script:</strong></p>
           <pre className="bg-white p-2 rounded text-xs"><code>python interfaces/claude_code_interface.py</code></pre>

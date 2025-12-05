@@ -59,7 +59,7 @@ export default function ResourcesPage() {
                   <div>✓ Real-time citations</div>
                 </div>
                 <a
-                  href="https://github.com/HosungYou/researcherRAG/blob/main/interfaces/claude_code_interface.py"
+                  href="https://github.com/HosungYou/ScholaRAG/blob/main/interfaces/claude_code_interface.py"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm text-gray-900 hover:underline flex items-center gap-1 font-medium"
@@ -86,7 +86,7 @@ export default function ResourcesPage() {
                   <div>✓ Statistics dashboard</div>
                 </div>
                 <a
-                  href="https://github.com/HosungYou/researcherRAG/blob/main/interfaces/streamlit_app.py"
+                  href="https://github.com/HosungYou/ScholaRAG/blob/main/interfaces/streamlit_app.py"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm text-gray-900 hover:underline flex items-center gap-1 font-medium"
@@ -113,7 +113,7 @@ export default function ResourcesPage() {
                   <div>✓ OpenAPI docs</div>
                 </div>
                 <a
-                  href="https://github.com/HosungYou/researcherRAG/blob/main/interfaces/fastapi_server.py"
+                  href="https://github.com/HosungYou/ScholaRAG/blob/main/interfaces/fastapi_server.py"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm text-gray-900 hover:underline flex items-center gap-1 font-medium"
@@ -166,7 +166,7 @@ export default function ResourcesPage() {
           <section>
             <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
               <Package className="w-6 h-6 text-primary-600" />
-              5-Stage Workflow Prompts
+              7-Stage Workflow Prompts
             </h3>
             <div className="grid md:grid-cols-2 gap-6">
               <ResourceCard

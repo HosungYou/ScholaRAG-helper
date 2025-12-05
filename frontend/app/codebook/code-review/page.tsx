@@ -405,7 +405,7 @@ Respond with: {{"study_quality": score, "reasoning": "..."}}
             about new features.
           </p>
           <a
-            href="https://github.com/HosungYou/researcherRAG"
+            href="https://github.com/HosungYou/ScholaRAG"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors"

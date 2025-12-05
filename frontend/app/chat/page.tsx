@@ -14,7 +14,7 @@ export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: 'Hi! I\'m the ScholaRAG Helper chatbot. I can help you with:\n\n- Understanding the 5-stage workflow\n- Query design and search strategies\n- PRISMA configuration\n- RAG system setup\n- Troubleshooting common issues\n\nWhat would you like to know?',
+      content: 'Hi! I\'m the ScholaRAG Helper chatbot. I can help you with:\n\n- Understanding the 7-stage workflow\n- Query design and search strategies\n- PRISMA configuration\n- RAG system setup\n- Troubleshooting common issues\n\nWhat would you like to know?',
       timestamp: new Date()
     }
   ])
@@ -179,7 +179,7 @@ export default function ChatPage() {
               </div>
               <div className="flex items-center justify-between mt-3">
                 <p className="text-xs text-gray-500">
-                  Powered by Claude 3.5 Sonnet | Press Enter to send, Shift+Enter for new line
+                  Powered by Claude Sonnet 4.5 | Press Enter to send, Shift+Enter for new line
                 </p>
                 <Link href="/guide" className="text-xs text-primary-600 hover:underline">
                   View Documentation

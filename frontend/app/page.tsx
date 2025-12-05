@@ -155,7 +155,7 @@ export default function HomePage() {
           />
           <FeatureCell
             title="AI-Powered Chatbot"
-            description="Get instant answers about ScholaRAG with Claude 3.5 Sonnet integration"
+            description="Get instant answers about ScholaRAG with Claude Sonnet 4.5 integration"
             href="/chat"
             delay={0.1}
           />
@@ -232,7 +232,7 @@ export default function HomePage() {
         <h2 className="text-3xl font-bold tracking-tight mb-8">Built with modern tools</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border border border-border rounded-lg overflow-hidden">
           {[
-            { name: 'Claude 3.5', description: 'Sonnet API' },
+            { name: 'Claude 4.5', description: 'Sonnet API' },
             { name: 'ChromaDB', description: 'Vector database' },
             { name: 'LangChain', description: 'RAG framework' },
             { name: 'Python', description: 'Backend stack' },

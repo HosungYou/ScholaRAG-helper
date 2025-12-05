@@ -64,7 +64,7 @@ export default function PromptLibraryPage() {
 
   return (
     <GuideLayout
-      githubUrl="https://github.com/HosungYou/researcherRAG/blob/main/scholarag_cli.py#L969-L1081"
+      githubUrl="https://github.com/HosungYou/ScholaRAG/blob/main/scholarag_cli.py#L969-L1081"
       githubLabel="View CLI Source"
     >
       <h1>Prompt Library</h1>
