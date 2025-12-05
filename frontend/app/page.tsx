@@ -3,12 +3,16 @@
 import Link from 'next/link'
 import { ArrowRight, Github, ExternalLink, MessageCircle } from 'lucide-react'
 import { motion } from 'framer-motion'
+import dynamic from 'next/dynamic'
 import TypewriterText from '@/components/TypewriterText'
 import AnimatedCounter from '@/components/AnimatedCounter'
 
+// Dynamic import for Prism to avoid SSR issues with WebGL
+const Prism = dynamic(() => import('@/components/Prism'), { ssr: false })
+
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
       {/* Header - Minimal (No animation, always static) */}
       <header className="border-b border-border">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -33,8 +37,24 @@ export default function HomePage() {
       </header>
 
       {/* Hero - Large Typography with Animations */}
-      <section className="max-w-7xl mx-auto px-6 pt-20 pb-12 overflow-hidden">
-        <div className="max-w-4xl">
+      <section className="max-w-7xl mx-auto px-6 pt-20 pb-12 overflow-hidden relative">
+        {/* Prism Background - Positioned to the right */}
+        <div className="absolute right-0 top-0 w-[600px] h-[600px] opacity-60 pointer-events-none hidden lg:block">
+          <Prism
+            height={4}
+            baseWidth={6}
+            animationType="hover"
+            glow={0.8}
+            noise={0.3}
+            scale={4}
+            hueShift={0.2}
+            colorFrequency={1.2}
+            bloom={1.2}
+            transparent={true}
+            suspendWhenOffscreen={true}
+          />
+        </div>
+        <div className="max-w-4xl relative z-10">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
