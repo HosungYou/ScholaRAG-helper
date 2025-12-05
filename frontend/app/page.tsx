@@ -32,7 +32,7 @@ export default function HomePage() {
       </header>
 
       {/* Hero - Large Typography with Animations */}
-      <section className="max-w-7xl mx-auto px-6 pt-20 pb-12 overflow-hidden">
+      <section className="relative max-w-7xl mx-auto px-6 pt-32 pb-24 overflow-hidden">
         <div className="max-w-4xl">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -81,6 +81,25 @@ export default function HomePage() {
               AI Assistant
             </Link>
           </motion.div>
+        </div>
+
+        {/* Unicorn Studio 3D Diamond Animation (bottom right of hero) */}
+        <div
+          className="absolute bottom-8 right-8 pointer-events-none hidden md:block"
+          style={{
+            zIndex: 1,
+            width: '350px',
+            height: '280px',
+            opacity: 0.9,
+          }}
+        >
+          <div
+            data-us-project="9BpGXKdn7qDLIOQ5StE3"
+            style={{
+              width: '100%',
+              height: '100%',
+            }}
+          />
         </div>
       </section>
 
