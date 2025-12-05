@@ -198,7 +198,7 @@ export async function generateChatResponse(
 
     // Call Claude API
     const response = await anthropic.messages.create({
-      model: 'claude-sonnet-4-5-20250514',
+      model: 'claude-sonnet-4-5-20250929',
       max_tokens: 2048,
       system: SYSTEM_PROMPT,
       messages: claudeMessages as any,
@@ -264,7 +264,7 @@ export async function streamChatResponse(
 
     // Stream response
     const stream = await anthropic.messages.stream({
-      model: 'claude-sonnet-4-5-20250514',
+      model: 'claude-sonnet-4-5-20250929',
       max_tokens: 2048,
       system: SYSTEM_PROMPT,
       messages: claudeMessages as any,
