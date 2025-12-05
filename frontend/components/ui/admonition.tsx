@@ -34,12 +34,12 @@ export function Admonition({ type = "info", title, children, className }: Admoni
   return (
     <div
       className={cn(
-        "my-6 flex gap-3 rounded-lg border p-4 text-sm",
+        "my-4 flex gap-2.5 rounded-lg border p-3 text-sm",
         style,
         className
       )}
     >
-      <Icon className="mt-0.5 h-5 w-5 shrink-0 opacity-80" />
+      <Icon className="mt-0.5 h-4 w-4 shrink-0 opacity-80" />
       <div className="flex-1">
         {title && <p className="mb-1 font-semibold">{title}</p>}
         <div className="[&>p]:last:mb-0 opacity-90">{children}</div>

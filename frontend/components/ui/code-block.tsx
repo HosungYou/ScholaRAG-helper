@@ -26,9 +26,9 @@ export function CodeBlock({
   }, [code]);
 
   return (
-    <div className={cn("relative my-6 overflow-hidden rounded-lg border border-gray-200 bg-gray-900", className)} {...props}>
+    <div className={cn("relative my-4 overflow-hidden rounded-lg border border-gray-200 bg-gray-900", className)} {...props}>
       {/* Header with Filename */}
-      <div className="flex items-center justify-between border-b border-gray-700 bg-gray-800 px-4 py-2 text-xs text-gray-400">
+      <div className="flex items-center justify-between border-b border-gray-700 bg-gray-800 px-3 py-1.5 text-xs text-gray-400">
         <div className="flex items-center gap-2">
           {language === "bash" || language === "sh" ? (
             <Terminal className="h-3.5 w-3.5" />
@@ -51,8 +51,8 @@ export function CodeBlock({
       </div>
 
       {/* Code Content */}
-      <div className="overflow-x-auto p-4">
-        <pre className="font-mono text-sm leading-relaxed text-gray-100">
+      <div className="overflow-x-auto p-3">
+        <pre className="font-mono text-sm leading-normal text-gray-100">
           <code>{code}</code>
         </pre>
       </div>
